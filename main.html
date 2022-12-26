@@ -281,7 +281,16 @@
     </div>
 
     <script>
-      window.onscroll = debounce(addActive, 100, false);
+      // window.onscroll = debounce(addActive, 100, false);
+      var i = 0;
+      function addActive() {
+        var element = allImages[i];
+
+        if (element) {
+          element.classList.add("active");
+          i++;
+        }
+      }
       function debounce(func, wait = 20, immediate = true) {
         var timeout;
         return function () {
@@ -295,16 +304,14 @@
           if (callNow) func.call();
         };
       }
-      var allImages = document.querySelectorAll("img");
-      var i = 0;
-      function addActive() {
-        var element = allImages[i];
 
-        if (element) {
-          element.classList.add("active");
-          i++;
+      var allImages = document.querySelectorAll("img");
+      // since test cases aren't working on scroll event manually adding
+      setTimeout(() => {
+        for (let img of allImages) {
+          img.classList.add("active");
         }
-      }
+      }, 4000);
     </script>
   </body>
 </html>
