@@ -301,8 +301,11 @@
       var i = 0;
       function addActive() {
         var element = allImages[i];
-        element.classList.add("active");
-        i++;
+
+        if (element) {
+          element.classList.add("active");
+          i++;
+        }
       }
     </script>
   </body>
