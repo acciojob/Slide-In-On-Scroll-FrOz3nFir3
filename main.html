@@ -281,23 +281,21 @@
     </div>
 
     <script>
-      window.onscroll = debounce(addActive, 20, false);
-      function debounce(addActive, wait = 20, immediate = true) {
+      window.onscroll = debounce(addActive, 100, false);
+      function debounce(func, wait = 20, immediate = true) {
         var timeout;
         return function () {
-          var context = this,
-            args = arguments;
           var later = function () {
             timeout = null;
-            if (!immediate) addActive.apply(context, args);
+            if (!immediate) func.call();
           };
           var callNow = immediate && !timeout;
           clearTimeout(timeout);
           timeout = setTimeout(later, wait);
-          if (callNow) addActive.apply(context, args);
+          if (callNow) func.call();
         };
       }
-      var allImages = document.querySelectorAll(".slide-in");
+      var allImages = document.querySelectorAll("img");
       var i = 0;
       function addActive() {
         var element = allImages[i];
